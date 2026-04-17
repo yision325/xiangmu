@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目网页导航</title>
+  <style>
+    :root {
+      --bg: #071211;
+      --panel: rgba(14, 32, 30, 0.82);
+      --line: rgba(111, 255, 224, 0.16);
+      --text: #ecf5f2;
+      --muted: #92aaa5;
+      --accent: #63ffd9;
+      --gold: #e4c77d;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(99,255,217,0.14), transparent 28%),
+        linear-gradient(180deg, #0a1716 0%, var(--bg) 100%);
+    }
+
+    .wrap {
+      width: min(calc(100% - 40px), 1080px);
+      margin: 0 auto;
+      padding: 64px 0 80px;
+    }
+
+    .hero, .card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 28px;
+      box-shadow: 0 22px 80px rgba(0,0,0,0.28);
+    }
+
+    .hero {
+      padding: 36px;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 12px;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.08;
+      font-family: "Palatino Linotype", "Book Antiqua", "Songti SC", serif;
+    }
+
+    .summary {
+      max-width: 68ch;
+      color: #d9e7e2;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 24px;
+    }
+
+    .meta {
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      margin: 12px 0 18px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(99,255,217,0.24);
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .actions a:hover {
+      border-color: rgba(99,255,217,0.46);
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <p class="eyebrow">Xiangmu / GitHub Pages</p>
+      <h1>一个网页，一个子文件夹</h1>
+      <p class="summary">
+        这个仓库用来放多个静态网页成品。仓库根目录是导航页，每个专题页单独放在自己的子文件夹里，后续新增页面时继续追加目录即可。
+      </p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <div class="meta">2026-04-17 / 生财有术 418</div>
+        <h2>一个人 + AI + 一群人</h2>
+        <p>
+          基于直播 PPT、七哥拆解稿、文字整理与直播笔记，重组为可浏览、可打开原始资料的专题页。
+        </p>
+        <div class="actions">
+          <a href="./shengcai-20260417/">打开网页</a>
+          <a href="./shengcai-20260417/assets/生财有术418直播ppt——%20一个人%20+%20AI%20+%20一群人_直播版%20PPT.pdf">打开 PPT</a>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
