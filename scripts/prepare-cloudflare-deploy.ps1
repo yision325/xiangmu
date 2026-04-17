@@ -15,25 +15,14 @@ if (Test-Path -LiteralPath $outputDir) {
 
 New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
 
-$rootFiles = @(
-  "index.html",
-  ".nojekyll"
-)
-
-foreach ($file in $rootFiles) {
-  $sourcePath = Join-Path $resolvedRepoDir $file
-  if (-not (Test-Path -LiteralPath $sourcePath)) {
-    throw "Missing root publish file: $sourcePath"
-  }
-
-  Copy-Item -LiteralPath $sourcePath -Destination $outputDir -Force
-}
-
 $siteSourceDir = Join-Path $resolvedRepoDir $SiteSlug
 if (-not (Test-Path -LiteralPath $siteSourceDir)) {
   throw "Missing site directory: $siteSourceDir"
 }
 
-Copy-Item -LiteralPath $siteSourceDir -Destination $outputDir -Recurse -Force
+Copy-Item -Path (Join-Path $siteSourceDir "*") -Destination $outputDir -Recurse -Force
+
+$noJekyllPath = Join-Path $outputDir ".nojekyll"
+New-Item -ItemType File -Path $noJekyllPath -Force | Out-Null
 
 Write-Host "Prepared Cloudflare deploy directory:" $outputDir
