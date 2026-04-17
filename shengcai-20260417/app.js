@@ -7,6 +7,14 @@ function qs(id) {
   return document.getElementById(id);
 }
 
+function isHashHref(href) {
+  return typeof href === "string" && href.startsWith("#");
+}
+
+function linkAttrs(href) {
+  return isHashHref(href) ? "" : ' target="_blank" rel="noopener noreferrer"';
+}
+
 function filteredModules() {
   const items = window.SITE_DATA.modules.items;
   if (state.filterId === "all") {
@@ -30,11 +38,11 @@ function setHead() {
 
 function renderNav() {
   qs("site-nav").innerHTML = window.SITE_DATA.nav.map((item) => (
-    `<a href="${item.href}">${item.label}</a>`
+    `<a href="${item.href}"${linkAttrs(item.href)}>${item.label}</a>`
   )).join("");
 
   qs("footer-links").innerHTML = window.SITE_DATA.site.footerLinks.map((item) => (
-    `<a href="${item.href}">${item.label}</a>`
+    `<a href="${item.href}"${linkAttrs(item.href)}>${item.label}</a>`
   )).join("");
 }
 
@@ -49,7 +57,7 @@ function renderHero() {
     heroSection.classList.add("has-hero-image");
   }
   qs("hero-actions").innerHTML = hero.actions.map((item) => (
-    `<a href="${item.href}">${item.label}</a>`
+    `<a href="${item.href}"${linkAttrs(item.href)}>${item.label}</a>`
   )).join("");
   qs("hero-stats").innerHTML = hero.stats.map((item) => (
     `<article><strong>${item.value}</strong><span>${item.label}</span></article>`
@@ -79,7 +87,7 @@ function renderModuleFilters() {
   qs("modules-kicker").textContent = modules.kicker;
   qs("modules-title").textContent = modules.title;
   qs("module-filters").innerHTML = modules.filters.map((item) => (
-    `<button class="${item.id === state.filterId ? "is-active" : ""}" data-filter="${item.id}">${item.label}</button>`
+    `<button type="button" class="${item.id === state.filterId ? "is-active" : ""}" data-filter="${item.id}" aria-pressed="${item.id === state.filterId}">${item.label}</button>`
   )).join("");
 
   qs("module-filters").querySelectorAll("button").forEach((button) => {
@@ -116,7 +124,7 @@ function renderModuleList() {
 function renderSpotlight() {
   const item = activeModule();
   const coverMedia = item.image
-    ? `<img src="${item.image}" alt="${item.name}">`
+    ? `<img src="${item.image}" alt="${item.name}" loading="lazy" decoding="async">`
     : "";
 
   qs("module-spotlight").style.setProperty("--cover-gradient", item.gradient);
@@ -163,7 +171,7 @@ function renderArchive() {
       <p>${group.text}</p>
       <div class="archive-links">
         ${group.links.map((link) => (
-          `<a class="archive-link" href="${link.href}">
+          `<a class="archive-link" href="${link.href}"${linkAttrs(link.href)}>
             <span>${link.label}</span>
             <small>Open</small>
           </a>`
