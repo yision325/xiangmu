@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -10,63 +10,129 @@
   <style>
     :root {
       --bg: #071211;
-      --panel: rgba(14, 32, 30, 0.82);
+      --panel: rgba(14, 32, 30, 0.84);
       --line: rgba(111, 255, 224, 0.16);
+      --line-strong: rgba(111, 255, 224, 0.3);
       --text: #ecf5f2;
       --muted: #92aaa5;
       --accent: #63ffd9;
       --gold: #e4c77d;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      --display: "Palatino Linotype", "Book Antiqua", "Songti SC", serif;
+      --body: "PingFang SC", "Microsoft YaHei", sans-serif;
     }
 
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
       color: var(--text);
+      font-family: var(--body);
       background:
-        radial-gradient(circle at top left, rgba(99,255,217,0.14), transparent 28%),
+        radial-gradient(circle at top left, rgba(99, 255, 217, 0.16), transparent 30%),
+        radial-gradient(circle at 85% 10%, rgba(228, 199, 125, 0.1), transparent 24%),
         linear-gradient(180deg, #0a1716 0%, var(--bg) 100%);
     }
 
-    .wrap {
-      width: min(calc(100% - 40px), 1080px);
-      margin: 0 auto;
-      padding: 64px 0 80px;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .hero, .card {
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .wrap {
+      width: min(calc(100% - 40px), 1120px);
+      margin: 0 auto;
+      padding: 56px 0 80px;
+    }
+
+    .hero,
+    .card,
+    .notice {
       border: 1px solid var(--line);
       background: var(--panel);
       border-radius: 28px;
-      box-shadow: 0 22px 80px rgba(0,0,0,0.28);
+      box-shadow: var(--shadow);
     }
 
     .hero {
       padding: 36px;
+      margin-bottom: 18px;
+    }
+
+    .notice {
+      padding: 18px 22px;
       margin-bottom: 24px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .eyebrow,
+    .meta {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 12px;
     }
 
     .eyebrow {
       margin: 0 0 12px;
       color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      font-size: 12px;
+    }
+
+    h1,
+    h2 {
+      font-family: var(--display);
+      line-height: 1.08;
     }
 
     h1 {
       margin: 0 0 12px;
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 1.08;
-      font-family: "Palatino Linotype", "Book Antiqua", "Songti SC", serif;
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
     }
 
     .summary {
-      max-width: 68ch;
+      max-width: 72ch;
+      margin: 0;
       color: #d9e7e2;
       font-size: 16px;
-      line-height: 1.8;
+      line-height: 1.9;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .hero-links a,
+    .actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(99, 255, 217, 0.24);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .hero-links a:hover,
+    .actions a:hover {
+      border-color: var(--line-strong);
+      transform: translateY(-1px);
+    }
+
+    .hero-links .primary {
+      color: #081311;
+      background: var(--accent);
+      border-color: transparent;
+      font-weight: 600;
     }
 
     .grid {
@@ -78,20 +144,17 @@
       padding: 24px;
     }
 
-    .card h2 {
-      margin: 0 0 8px;
-      font-size: 24px;
-    }
-
     .meta {
       color: var(--gold);
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    }
+
+    .card h2 {
+      margin: 10px 0 10px;
+      font-size: 26px;
     }
 
     .card p {
-      margin: 12px 0 18px;
+      margin: 0 0 18px;
       color: var(--muted);
       line-height: 1.8;
     }
@@ -103,23 +166,38 @@
     }
 
     .actions a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(99,255,217,0.24);
-      color: var(--text);
-      text-decoration: none;
+      min-height: 42px;
+      font-size: 14px;
     }
 
-    .actions a:hover {
-      border-color: rgba(99,255,217,0.46);
+    .footnote {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    code {
+      font-family: "Cascadia Code", "Consolas", monospace;
+      font-size: 0.95em;
+    }
+
+    @media (max-width: 900px) {
+      .wrap {
+        width: min(calc(100% - 28px), 1120px);
+        padding: 36px 0 56px;
+      }
+
+      .hero,
+      .card,
+      .notice {
+        border-radius: 22px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Generated by site-system/scripts/sync-entry-pages.ps1 -->
   <main class="wrap">
     <section class="hero">
       <p class="eyebrow">Xiangmu / GitHub Pages</p>
@@ -127,6 +205,14 @@
       <p class="summary">
         这个仓库用来放多个静态网页成品。仓库根目录是导航页，每个专题页单独放在自己的子文件夹里，后续新增页面时继续追加目录即可。
       </p>
+      <div class="hero-links">
+        <a class="primary" href="./shengcai-20260417/">打开专题页</a>
+        <a href="./shengcai-20260417/assets/生财有术418直播ppt——%20一个人%20+%20AI%20+%20一群人_直播版%20PPT.pdf" target="_blank" rel="noopener noreferrer">打开 PPT</a>
+      </div>
+    </section>
+
+    <section class="notice">
+      当前页面与工作区根入口页共享同一份生成脚本，但只保留适合公开发布的导航内容。
     </section>
 
     <section class="grid">
@@ -137,11 +223,15 @@
           基于直播 PPT、七哥拆解稿、文字整理与直播笔记，重组为可浏览、可打开原始资料的专题页。
         </p>
         <div class="actions">
-          <a href="./shengcai-20260417/">打开网页</a>
-          <a href="./shengcai-20260417/assets/生财有术418直播ppt——%20一个人%20+%20AI%20+%20一群人_直播版%20PPT.pdf" target="_blank" rel="noopener noreferrer">打开 PPT</a>
+        <a href="./shengcai-20260417/">打开网页</a>
+        <a href="./shengcai-20260417/assets/生财有术418直播ppt——%20一个人%20+%20AI%20+%20一群人_直播版%20PPT.pdf" target="_blank" rel="noopener noreferrer">打开 PPT</a>
         </div>
       </article>
     </section>
+
+    <p class="footnote">
+      如果你修改了工作区里的入口源数据，可以重新运行 <code>site-system/scripts/sync-entry-pages.ps1</code> 同步这张发布导航页。
+    </p>
   </main>
 </body>
 </html>
