@@ -1,9 +1,9 @@
 window.SITE_DATA = {
   site: {
-    title: "生财有术 418 直播专题页",
-    brandName: "生财有术 418",
-    tagline: "一个人 + AI + 一群人",
-    footerCopy: "基于 2026 年 4 月 17 日目录内的直播 PPT、拆解稿、文字整理与直播笔记整理而成。",
+    title: "七哥生财有术418",
+    brandName: "七哥生财有术418",
+    tagline: "体验营 / 新人价 / 续费价",
+    footerCopy: "体验营、新人优惠价、老圈友续费价，以及 2026 年 4 月 17 日直播资料整理而成。",
     footerLinks: [
       { label: "核心亮点", href: "#focus" },
       { label: "重点模块", href: "#modules" },
@@ -239,7 +239,7 @@ window.SITE_DATA = {
           { label: "直播 PPT", href: "assets/生财有术418直播ppt—— 一个人 + AI + 一群人_直播版 PPT.pdf" },
           { label: "文字整理", href: "assets/生财有术418直播文字一个人 + AI + 一群人：亦仁十周年直播分享整理(2).pdf" },
           { label: "七哥拆解", href: "assets/生财有术418直播-七哥拆解.pdf" },
-          { label: "直播笔记", href: "https://raw.githubusercontent.com/yision325/xiangmu/main/shengcai-20260417/assets/%E7%94%9F%E8%B4%A2%E6%9C%89%E6%9C%AF418%E7%9B%B4%E6%92%AD%E7%AC%94%E8%AE%B0.pdf" }
+          { label: "直播笔记", href: "assets/生财有术418直播笔记.pdf" }
         ]
       },
       {
