@@ -239,7 +239,7 @@ window.SITE_DATA = {
           { label: "直播 PPT", href: "assets/生财有术418直播ppt—— 一个人 + AI + 一群人_直播版 PPT.pdf" },
           { label: "文字整理", href: "assets/生财有术418直播文字一个人 + AI + 一群人：亦仁十周年直播分享整理(2).pdf" },
           { label: "七哥拆解", href: "assets/生财有术418直播-七哥拆解.pdf" },
-          { label: "直播笔记", href: "assets/生财有术418直播笔记.pdf" }
+          { label: "直播笔记", href: "https://raw.githubusercontent.com/yision325/xiangmu/main/shengcai-20260417/assets/%E7%94%9F%E8%B4%A2%E6%9C%89%E6%9C%AF418%E7%9B%B4%E6%92%AD%E7%AC%94%E8%AE%B0.pdf" }
         ]
       },
       {

@@ -22,6 +22,14 @@ if (-not (Test-Path -LiteralPath $siteSourceDir)) {
 
 Copy-Item -Path (Join-Path $siteSourceDir "*") -Destination $outputDir -Recurse -Force
 
+$maxAssetSizeBytes = 25MB
+$oversizedFiles = Get-ChildItem -Path $outputDir -Recurse -File | Where-Object { $_.Length -gt $maxAssetSizeBytes }
+
+foreach ($file in $oversizedFiles) {
+  Write-Warning ("Skipping oversized Cloudflare asset: {0} ({1:N1} MiB)" -f $file.FullName, ($file.Length / 1MB))
+  Remove-Item -LiteralPath $file.FullName -Force
+}
+
 $noJekyllPath = Join-Path $outputDir ".nojekyll"
 New-Item -ItemType File -Path $noJekyllPath -Force | Out-Null
 
