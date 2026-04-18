@@ -41,12 +41,6 @@ a {
   text-decoration: none;
 }
 
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
 button {
   font: inherit;
 }
@@ -149,8 +143,139 @@ button {
   position: relative;
 }
 
+.renewal-top {
+  padding: 30px 0 0;
+}
+
+.renewal-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.renewal-copy,
+.renewal-poster {
+  position: relative;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.renewal-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 32px;
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(135deg, rgba(228, 199, 125, 0.14), rgba(101, 255, 216, 0.06) 48%, rgba(7, 18, 18, 0.96)),
+    rgba(9, 21, 20, 0.96);
+}
+
+.renewal-copy::before,
+.renewal-poster::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), transparent 45%);
+  pointer-events: none;
+}
+
+.renewal-title {
+  margin: 10px 0 14px;
+  font-family: var(--display);
+  font-size: clamp(2rem, 3.8vw, 3.4rem);
+  line-height: 1.08;
+}
+
+.renewal-summary {
+  margin: 0;
+  max-width: 40ch;
+  color: #d8e8e3;
+  font-size: 1rem;
+}
+
+.renewal-key-list,
+.renewal-media {
+  display: grid;
+  gap: 14px;
+}
+
+.renewal-key-list {
+  margin-top: 4px;
+}
+
+.renewal-key-item {
+  display: grid;
+  gap: 8px;
+  padding: 18px 18px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.renewal-key-label {
+  display: block;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.74rem;
+}
+
+.renewal-key-value {
+  display: block;
+  margin-top: 10px;
+  color: var(--gold);
+  font-family: var(--display);
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  line-height: 1.1;
+}
+
+.renewal-key-note {
+  margin: 0;
+  color: var(--muted);
+}
+
+.renewal-key-item-featured {
+  background: linear-gradient(145deg, rgba(228, 199, 125, 0.18), rgba(255, 255, 255, 0.04));
+  border-color: rgba(228, 199, 125, 0.28);
+}
+
+.renewal-media {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  justify-items: center;
+}
+
+.renewal-poster {
+  margin: 0;
+  width: min(100%, 260px);
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--panel-strong);
+}
+
+.renewal-poster img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5.6;
+  object-fit: cover;
+}
+
+.renewal-poster figcaption {
+  padding: 12px 16px 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 .hero {
   padding: 112px 0 48px;
+}
+
+.renewal-top + .hero {
+  padding-top: 46px;
 }
 
 .hero.has-hero-image::before {
@@ -329,25 +454,6 @@ button {
 
 .section {
   padding: 32px 0 0;
-}
-
-.noscript-section {
-  padding-top: 28px;
-}
-
-.noscript-card {
-  padding: 24px;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--line);
-  background: var(--panel-strong);
-  box-shadow: var(--shadow);
-}
-
-.noscript-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 20px;
 }
 
 .section-head {
@@ -618,11 +724,20 @@ button {
 }
 
 @media (max-width: 1024px) {
+  .renewal-shell,
   .hero-grid,
   .module-layout,
   .focus-grid,
   .quotes-grid,
   .archive-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .renewal-media {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .renewal-key-list {
     grid-template-columns: 1fr;
   }
 
@@ -646,6 +761,22 @@ button {
 
   .hero {
     padding-top: 96px;
+  }
+
+  .renewal-copy {
+    padding: 24px;
+  }
+
+  .renewal-media {
+    grid-template-columns: 1fr;
+  }
+
+  .renewal-poster {
+    width: min(100%, 320px);
+  }
+
+  .renewal-top + .hero {
+    padding-top: 28px;
   }
 
   .hero-copy,
